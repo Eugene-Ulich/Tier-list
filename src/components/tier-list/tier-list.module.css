@@ -1,0 +1,55 @@
+.list_row {
+    margin: 10px;
+    display: block;
+    border: 4px solid rgb(37, 36, 36);
+    height: 5rem;
+    width: 60rem;
+}
+
+
+.row-label {
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: large;
+    width: 10%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    vertical-align: top;
+    border-right: var(--main-blocks-border);
+    line-height: 2.5rem;
+  }
+  
+  .row-label input {
+    background: inherit;
+      width: 100%;
+      height: 100%;
+      text-align: inherit;
+      padding: 0;
+      border: none;
+  }
+
+.row-label#label-0 {
+    background-color: rgb(255, 0, 0);
+}
+
+.row-label#label-1 {
+    background-color: rgb(245, 128, 50);
+}
+
+.row-label#label-2 {
+    background-color: rgb(245, 177, 50);
+}
+
+.row-label#label-3 {
+    background-color: rgb(209, 245, 50);
+}
+
+.row-label#label-4 {
+    background-color: rgb(71, 199, 98);
+}
+
+.row-label#label-5 {
+    background-color: rgb(160, 185, 166);
+}

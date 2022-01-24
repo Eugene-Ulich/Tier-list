@@ -1,14 +1,15 @@
 import { Draggable } from 'react-beautiful-dnd'
-function ElementItem ({index, name}) {
+function ElementItem ({index, item: {name, img}}) {
+
     return (
     <Draggable index={index} draggableId={name+"-"+index}>
         { (provided) => (
             <span 
-            className="element-item"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            >{name}</span>
+            ><img height="80" src={img} alt={name} />
+            </span>
         )}
     </Draggable>)
 }

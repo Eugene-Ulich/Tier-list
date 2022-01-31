@@ -23,6 +23,17 @@ function TierList() {
     })
     .catch(console.error);
   }, []);
+//----------------------------------------------------// save changes to DB
+  function saveTierlistChanges () {
+    fetch('https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app/Stellaris.json',
+    {
+      method: 'PUT',
+      body: JSON.stringify({list, name, description}),
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(_=>alert('Saved'))
+    .catch(console.error);
+  }
 //----------------------------------------------------// managing drag results
   function handleDragEnd (result) {
     if (!result.destination) return;
@@ -30,7 +41,7 @@ function TierList() {
     const {source: {index: sourceIndex, droppableId: sourceID}, destination: {index: destIndex, droppableId: destID}} = result;
     if (sourceIndex === destIndex && sourceID === destID) return; // Skip rerender if the place is the same
     
-    let newList = Object.assign({}, list);
+    let newList = {...list};
     let deletedItem = newList[sourceID].splice(sourceIndex, 1);
     newList[destID].splice(destIndex, 0, deletedItem[0]);
     changeList(newList);
@@ -52,6 +63,7 @@ function TierList() {
             {(list.unordered) ? <OuterContainer elements={list.unordered}/> : null }
           </DragDropContext>
         </section>
+        <button onClick={saveTierlistChanges}>Save</button>
       </div>
     );
   }

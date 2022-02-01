@@ -1,14 +1,23 @@
-function Footer () {
-    return (
-        <div className="footer">
-            <div>Support
-                <span>Discover more</span>
-                <span>Contact us</span>
-                <span>FAQ</span>
-            </div>
-                <span>Follow us</span>
-        </div>
-    );
+import { Link } from "react-router-dom";
+
+function Footer() {
+  return (
+    <footer>
+      <ul>
+        Support
+        <li>
+          <Link to="/category">Discover more</Link>
+        </li>
+        <li>
+          <Link to="/contacts">Contact us</Link>
+        </li>
+        <li>
+          <Link to="/faq">FAQ</Link>
+        </li>
+      </ul>
+      <span>Follow us</span>
+    </footer>
+  );
 }
 
 export default Footer;

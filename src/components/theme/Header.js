@@ -7,10 +7,13 @@ function Header() {
       <nav>
         <ul>
           <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
             <Link to="#">Login</Link>
           </li>
           <li>
-            <Link to="#">Discover</Link>
+            <Link to="/category">Discover</Link>
           </li>
           <li>
             <Link to="/create-new-tier-list">Create your first Tier List</Link>

@@ -9,7 +9,7 @@ import App from "./App";
 import Home from "./components/theme/Home";
 import CreateNewTierList from "./components/tier-list/CreateNewTierList";
 import Discover from "./components/theme/Discover";
-import TierList from "./components/TierList";
+import TierList from "./components/tier-list/TierList";
 
 render(
   <BrowserRouter>

@@ -66,6 +66,12 @@
           "name": "Ancient Relic",
           "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fancient-relics-story-pack.jpg?alt=media&token=1ddf0bf6-c904-4e80-b746-5968f3780dab"
         }
+      ],
+      "unordered": [
+        {
+          "name": "Lithoids",
+          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Flithoids-species-pack.jpg?alt=media&token=f161a16c-e4c9-49f6-a841-2a17b53fb2cf"
+        }
       ]
     }
   }

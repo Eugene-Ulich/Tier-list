@@ -1,15 +1,15 @@
 //import ListElements from "./tier-list/ListElements";
-import ListRows from "./tier-list/ListRows";
-import OuterContainer from "./tier-list/OuterContainer";
+import ListRows from "./ListRows";
+import OuterContainer from "./OuterContainer";
 import { DragDropContext } from "react-beautiful-dnd";
 import React, { useState, useEffect } from "react";
 import { MdDownloading } from "react-icons/md";
-import TextField from "./TextField";
+import TextField from "../ui/TextField";
 import { useParams } from "react-router-dom";
 
 function TierList() {
   //const param = useParams();
-  const fetchURI = `https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app/${
+  const fetchURI = `https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app/tier-lists/${
     useParams().listName
   }.json`;
   const [list, changeList] = useState();

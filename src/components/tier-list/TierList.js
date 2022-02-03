@@ -1,35 +1,17 @@
-//import ListElements from "./tier-list/ListElements";
 import ListRows from "./ListRows";
 import OuterContainer from "./OuterContainer";
-import { DragDropContext } from "react-beautiful-dnd";
-import React, { useState, useEffect } from "react";
-import { MdDownloading } from "react-icons/md";
 import TextField from "../ui/TextField";
-import { useParams } from "react-router-dom";
+import { TierListContext } from "../controller/TierListProvider";
+import HandleDragEnd from "../controller/HandleDragEnd";
 
-function TierList() {
-  //const param = useParams();
-  const fetchURI = `https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app/tier-lists/${
-    useParams().listName
-  }.json`;
-  const [list, changeList] = useState();
-  const [name, changeName] = useState();
-  const [description, changeDescription] = useState();
-  const [loading, setLoading] = useState(true);
-  //----------------------------------------------------// fetching tier-list drom DB
-  useEffect((_) => {
-    fetch(fetchURI)
-      .then((response) => response.json())
-      .then((result) => {
-        changeList(result.list);
-        changeName(result.name);
-        changeDescription(result.description);
-        setLoading(false);
-      })
-      .catch(console.error);
-  }, []);
+import { useContext } from "react";
+import { MdDownloading } from "react-icons/md";
+import { DragDropContext } from "react-beautiful-dnd";
+
+export default function TierList() {  
+  const { list, changeList, name, changeName, description, changeDescription, loading, fetchURI } = useContext(TierListContext);
   //----------------------------------------------------// save changes to DB
-  function saveTierlistChanges() {
+  function handleSaveChanges() {
     fetch(fetchURI, {
       method: "PUT",
       body: JSON.stringify({ list, name, description }),
@@ -37,21 +19,6 @@ function TierList() {
     })
       .then((_) => alert("Saved"))
       .catch(console.error);
-  }
-  //----------------------------------------------------// managing drag results
-  function handleDragEnd(result) {
-    if (!result.destination) return;
-
-    const {
-      source: { index: sourceIndex, droppableId: sourceID },
-      destination: { index: destIndex, droppableId: destID },
-    } = result;
-    if (sourceIndex === destIndex && sourceID === destID) return; // Skip rerender if the place is the same
-
-    let newList = { ...list };
-    let deletedItem = newList[sourceID].splice(sourceIndex, 1);
-    newList[destID].splice(destIndex, 0, deletedItem[0]);
-    changeList(newList);
   }
   //----------------------------------------------------// render section
   if (loading)
@@ -66,7 +33,7 @@ function TierList() {
         <TextField text={name} Tag="h1" onEdit={changeName} />
         <TextField text={description} onEdit={changeDescription} />
         <section className="list-container">
-          <DragDropContext onDragEnd={handleDragEnd}>
+          <DragDropContext onDragEnd={ result => HandleDragEnd(result, list, changeList) }>
             {Object.keys(list)
               .filter((label) => label !== "unordered")
               .map((rowLabel, index) => (
@@ -82,10 +49,8 @@ function TierList() {
             ) : null}
           </DragDropContext>
         </section>
-        <button onClick={saveTierlistChanges}>Save</button>
+        <button onClick={handleSaveChanges}>Save</button>
       </div>
     );
   }
 }
-
-export default TierList;

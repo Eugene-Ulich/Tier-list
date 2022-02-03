@@ -10,6 +10,7 @@ import Home from "./components/theme/Home";
 import CreateNewTierList from "./components/tier-list/CreateNewTierList";
 import Discover from "./components/theme/Discover";
 import TierList from "./components/tier-list/TierList";
+import TierListProvider from "./components/controller/TierListProvider";
 
 render(
   <BrowserRouter>
@@ -18,7 +19,7 @@ render(
         <Route index element={<Home />} />
         <Route path="create-new-tier-list" element={<CreateNewTierList />} />
         <Route path="category" element={<Discover />} />
-        <Route path="category/:listName" element={<TierList />} />
+        <Route path="category/:listName" element={<TierListProvider><TierList /></TierListProvider>} />
         <Route
           path="*"
           element={

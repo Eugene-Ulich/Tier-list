@@ -1,78 +1,125 @@
 {
+  "Pantheras": {
+    "description": "The survilabilty and hunter prowess of the big cats",
+    "labels": ["S", "A", "B", "C", "F"],
+    "list": [
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FPantheras%2Ftiger.jpg?alt=media&token=66e109cc-1242-4766-9709-ef3ba28da164",
+        "label": "unordered",
+        "name": "Tiger"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FPantheras%2Flion.jpg?alt=media&token=d579f236-d7eb-4812-bfb6-c3c378148920",
+        "label": "unordered",
+        "name": "Lion"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FPantheras%2Fjaguar.jpg?alt=media&token=a4044500-0813-477f-b2e9-733379eef6c4",
+        "label": "unordered",
+        "name": "Jaguar"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FPantheras%2Fleopard.jpg?alt=media&token=66e2af04-d3c5-4047-8823-748f008e2f07",
+        "label": "unordered",
+        "name": "Leopard"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FPantheras%2Founce.jpg?alt=media&token=12877396-fc67-40b3-9126-e439d9fa7a63",
+        "label": "unordered",
+        "name": "Ounce"
+      }
+    ],
+    "name": "Big cats chart"
+  },
   "Stellaris": {
-    "name": "Stellaris DLC",
-    "description": "Template description of tierlist.",
-    "list": {
-      "S": [
-        {
-          "name": "Apocalypsis",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fapocalypse-extension.jpg?alt=media&token=6eefa6f9-7659-4383-8333-a32f456b4b0b"
-        },
-        {
-          "name": "Leviathan",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fleviathans-story-pack.jpg?alt=media&token=ac2284d1-7f1c-44ff-bf1e-7c8b1cc54567"
-        }
-      ],
-      "A": [
-        {
-          "name": "Utopia",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Futopia-extension.jpg?alt=media&token=d0044685-d333-46d4-9a06-7367ae4ae6c1"
-        },
-        {
-          "name": "Distant Stars Stories pack",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fdistant-stars-story-pack.jpg?alt=media&token=a6960f8f-be48-48bf-9e90-0565d3198aff"
-        },
-        {
-          "name": "MegaCorp",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fmegacorp-extension.jpg?alt=media&token=b8c0ee00-01d4-4c35-9bed-d1e5bb001a5f"
-        }
-      ],
-      "B": [
-        {
-          "name": "Aquatic Species Pack",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Faquatics-species-pack.jpg?alt=media&token=8acffdd2-4539-48de-9d74-3ed9a312f326"
-        },
-        {
-          "name": "Synthetic Dawn",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fsynthetic-dawn-species-pack.jpg?alt=media&token=92e608ba-6634-4647-a8e8-a34eade905fc"
-        }
-      ],
-      "C": [
-        {
-          "name": "Necroids",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fnecroids-species-pack.jpg?alt=media&token=7e161136-8f51-45a4-8bea-24fa25084b89"
-        },
-        {
-          "name": "Nemesis",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fnemesis-extension.jpg?alt=media&token=63235d54-c144-4f0d-b329-7c29c6b59a3b"
-        },
-        {
-          "name": "Federations",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Ffederations-extension.jpg?alt=media&token=56a7a50e-53c5-40c5-a834-65114c0a1a33"
-        }
-      ],
-      "D": [
-        {
-          "name": "Plantoids Species Pack",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fplantoids-species-pack-cover.jpg?alt=media&token=5e31e7c2-b545-4c83-a3dc-e39d73503778"
-        },
-        {
-          "name": "Humanoids Species Pack",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fhumanoids-species-pack.jpg?alt=media&token=777abbf2-69cd-4233-a9c6-2c7158f5e04f"
-        }
-      ],
-      "F": [
-        {
-          "name": "Ancient Relic",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fancient-relics-story-pack.jpg?alt=media&token=1ddf0bf6-c904-4e80-b746-5968f3780dab"
-        }
-      ],
-      "unordered": [
-        {
-          "name": "Lithoids",
-          "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Flithoids-species-pack.jpg?alt=media&token=f161a16c-e4c9-49f6-a841-2a17b53fb2cf"
-        }
-      ]
-    }
+    "description": "My top Stellaris DLC recommends for purchase",
+    "labels": ["S", "A", "B", "C", "D", "F"],
+    "list": [
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Futopia-extension.jpg?alt=media&token=d0044685-d333-46d4-9a06-7367ae4ae6c1",
+        "label": "1",
+        "name": "Utopia",
+        "row order": "0"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fdistant-stars-story-pack.jpg?alt=media&token=a6960f8f-be48-48bf-9e90-0565d3198aff",
+        "label": "1",
+        "name": "Distant Stars Stories pack",
+        "row order": "1"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fancient-relics-story-pack.jpg?alt=media&token=1ddf0bf6-c904-4e80-b746-5968f3780dab",
+        "label": "1",
+        "name": "Ancient Relic",
+        "row order": "2"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fsynthetic-dawn-species-pack.jpg?alt=media&token=92e608ba-6634-4647-a8e8-a34eade905fc",
+        "label": "2",
+        "name": "Synthetic Dawn",
+        "row order": "0"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fleviathans-story-pack.jpg?alt=media&token=ac2284d1-7f1c-44ff-bf1e-7c8b1cc54567",
+        "label": "2",
+        "name": "Leviathan",
+        "row order": "1"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fmegacorp-extension.jpg?alt=media&token=b8c0ee00-01d4-4c35-9bed-d1e5bb001a5f",
+        "label": "2",
+        "name": "MegaCorp",
+        "row order": "2"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fnecroids-species-pack.jpg?alt=media&token=7e161136-8f51-45a4-8bea-24fa25084b89",
+        "label": "3",
+        "name": "Necroids",
+        "row order": "0"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fnemesis-extension.jpg?alt=media&token=63235d54-c144-4f0d-b329-7c29c6b59a3b",
+        "label": "3",
+        "name": "Nemesis",
+        "row order": "1"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Ffederations-extension.jpg?alt=media&token=56a7a50e-53c5-40c5-a834-65114c0a1a33",
+        "label": "3",
+        "name": "Federations",
+        "row order": "2"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fplantoids-species-pack-cover.jpg?alt=media&token=5e31e7c2-b545-4c83-a3dc-e39d73503778",
+        "label": "4",
+        "name": "Plantoids Species Pack",
+        "row order": "0"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fhumanoids-species-pack.jpg?alt=media&token=777abbf2-69cd-4233-a9c6-2c7158f5e04f",
+        "label": "4",
+        "name": "Humanoids Species Pack",
+        "row order": "1"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Faquatics-species-pack.jpg?alt=media&token=8acffdd2-4539-48de-9d74-3ed9a312f326",
+        "label": "4",
+        "name": "Aquatic Species Pack",
+        "row order": "2"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Fapocalypse-extension.jpg?alt=media&token=6eefa6f9-7659-4383-8333-a32f456b4b0b",
+        "label": "0",
+        "name": "Apocalypsis",
+        "row order": "0"
+      },
+      {
+        "img": "https://firebasestorage.googleapis.com/v0/b/tier-list-70ad0.appspot.com/o/Tier-list%2FStellaris%2Flithoids-species-pack.jpg?alt=media&token=f161a16c-e4c9-49f6-a841-2a17b53fb2cf",
+        "label": "unordered",
+        "name": "Lithoids",
+        "row order": "0"
+      }
+    ],
+    "name": "Stellaris DLC 2020"
   }
 }

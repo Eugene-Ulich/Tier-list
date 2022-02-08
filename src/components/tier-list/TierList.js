@@ -8,9 +8,20 @@ import { useContext } from "react";
 import { MdDownloading } from "react-icons/md";
 import { DragDropContext } from "react-beautiful-dnd";
 
-export default function TierList() {  
-  const { list, changeList, name, changeName, description, changeDescription, loading, fetchURI } = useContext(TierListContext);
-  //----------------------------------------------------// save changes to DB
+export default function TierList() {
+  const {
+    list,
+    changeList,
+    name,
+    changeName,
+    description,
+    changeDescription,
+    labels,
+    changeLabels,
+    loading,
+    fetchURI,
+  } = useContext(TierListContext);
+  //----------------------------------------------------// save changes to DB should be moved to component
   function handleSaveChanges() {
     fetch(fetchURI, {
       method: "PUT",
@@ -21,6 +32,8 @@ export default function TierList() {
       .catch(console.error);
   }
   //----------------------------------------------------// render section
+  const checkUnordered = (item) => item.label === "unordered"; //check if the provided list have items without label
+
   if (loading)
     return (
       <div>
@@ -33,19 +46,25 @@ export default function TierList() {
         <TextField text={name} Tag="h1" onEdit={changeName} />
         <TextField text={description} onEdit={changeDescription} />
         <section className="list-container">
-          <DragDropContext onDragEnd={ result => HandleDragEnd(result, list, changeList) }>
-            {Object.keys(list)
-              .filter((label) => label !== "unordered")
-              .map((rowLabel, index) => (
+          <DragDropContext
+            onDragEnd={(result) =>
+              HandleDragEnd(result, list, labels, changeList)
+            }
+          >
+            {
+              //Object.keys(list)
+              //.filter((label) => label !== "unordered")
+              labels.map((rowLabel, index) => (
                 <ListRows
                   key={index}
                   rowLabel={rowLabel}
                   rowListElements={list[rowLabel]}
                   listIndex={index}
                 />
-              ))}
-            {list.unordered ? (
-              <OuterContainer elements={list.unordered} />
+              ))
+            }
+            {list.some(checkUnordered) ? (
+              <OuterContainer elements={list.filter(checkUnordered)} />
             ) : null}
           </DragDropContext>
         </section>

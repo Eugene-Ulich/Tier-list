@@ -51,19 +51,10 @@ export default function TierList() {
               HandleDragEnd(result, list, labels, changeList)
             }
           >
-            {
-              //Object.keys(list)
-              //.filter((label) => label !== "unordered")
-              labels.map((rowLabel, index) => (
-                <ListRows
-                  key={index}
-                  rowLabel={rowLabel}
-                  rowListElements={list[rowLabel]}
-                  listIndex={index}
-                />
-              ))
-            }
-            {list.some(checkUnordered) ? (
+            {labels.map((value, index) => (
+              <ListRows key={index} labelValue={value} labelIndex={index} />
+            ))}
+            {list.some(checkUnordered) ? ( //move to a new component
               <OuterContainer elements={list.filter(checkUnordered)} />
             ) : null}
           </DragDropContext>

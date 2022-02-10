@@ -25,14 +25,13 @@ export default function TierList() {
   function handleSaveChanges() {
     fetch(fetchURI, {
       method: "PUT",
-      body: JSON.stringify({ list, name, description }),
+      body: JSON.stringify({ list, name, description, labels }),
       headers: { "Content-Type": "application/json" },
     })
       .then((_) => alert("Saved"))
       .catch(console.error);
   }
   //----------------------------------------------------// render section
-  const checkUnordered = (item) => item.label === "unordered"; //check if the provided list have items without label
 
   if (loading)
     return (
@@ -48,15 +47,13 @@ export default function TierList() {
         <section className="list-container">
           <DragDropContext
             onDragEnd={(result) =>
-              HandleDragEnd(result, list, labels, changeList)
+              HandleDragEnd(result, list, changeList)
             }
           >
             {labels.map((value, index) => (
               <ListRows key={index} labelValue={value} labelIndex={index} />
             ))}
-            {list.some(checkUnordered) ? ( //move to a new component
-              <OuterContainer elements={list.filter(checkUnordered)} />
-            ) : null}
+            <OuterContainer />
           </DragDropContext>
         </section>
         <button onClick={handleSaveChanges}>Save</button>

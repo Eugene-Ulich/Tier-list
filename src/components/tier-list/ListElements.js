@@ -5,10 +5,8 @@ import { useContext } from "react";
 import { TierListContext } from "../controller/TierListProvider";
 
 export default function ListElements({ labelIndex = "unordered" }) {
-  const { list, loading } = useContext(TierListContext);
+  const { list } = useContext(TierListContext);
 
-  if (loading) return null;
-  else {
     return (
       <Droppable droppableId={labelIndex.toString()} direction="horizontal">
         {(provided) => (
@@ -30,5 +28,4 @@ export default function ListElements({ labelIndex = "unordered" }) {
         )}
       </Droppable>
     );
-  }
 }

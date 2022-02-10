@@ -6,9 +6,9 @@ export const TierListContext = createContext();
 const defaultLabel = ["S", "A", "B", "C", "F"]; //Why are we still here? Just to suffer?
 
 export default function TierListProvider({ children }) {
-  const [list, changeList] = useState();
-  const [name, changeName] = useState();
-  const [description, changeDescription] = useState();
+  const [list, changeList] = useState([]);
+  const [name, changeName] = useState('');
+  const [description, changeDescription] = useState('');
   const [labels, changeLabels] = useState(defaultLabel);
   const [loading, setLoading] = useState(true);
   const [fetchURI] = useState(

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export const TierListContext = createContext();
 
-const defaultLabel = ["S", "A", "B", "C", "F"]; //Why are we still here? Just to suffer?
+export const defaultLabel = ["S", "A", "B", "C", "F"]; //Why are we still here? Just to suffer?
 
 export default function TierListProvider({ children }) {
   const [list, changeList] = useState([]);

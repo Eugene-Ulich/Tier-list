@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 import { defaultLabel } from "../controller/TierListProvider";
+import ImagePreveiw from "./ImagePreveiw";
 import RowLabel from "./RowLabel";
 
 export default function CreateNewTierList() {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [labels, setLabels] = useState(defaultLabel);
+  const [images, setImages] = useState([]);
   const imageInput = useRef();
   //const imageVeiw = new FileReader();
   const handleChange = (stateHandler) => (event) =>
@@ -37,24 +39,14 @@ export default function CreateNewTierList() {
         <input
           ref={imageInput}
           type="file"
+          onChange={handleChange(setImages)}
           accept="image/png, image/jpeg"
           multiple
         />
         <br />
-        <div>
-          {imageInput.current && imageInput.current.files.length>2
-            ? [...imageInput.current.files].map((item, index) => (
-                item.type==="image/png" || item.type==="image/jpeg" ? 
-                <img
-                  height="80"
-                  key={index}
-                  alt={item.name}
-                  src={URL.createObjectURL(item)}
-                />
-                : <span style={{width: "80px"}}>Wrong type</span>
-              ))
-            : <p>You must upload at least 3 images</p>}
-        </div>
+        {imageInput.current ? (
+          <ImagePreveiw files={[...imageInput.current.files]} />
+        ) : null}
         <div>
           {labels.map((item, index) => (
             <RowLabel name={item} index={index} key={index} />

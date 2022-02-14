@@ -7,7 +7,8 @@ export default function CreateNewTierList() {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [labels, setLabels] = useState(defaultLabel);
-  const [images, setImages] = useState([]);
+  const [iAmStupid, uncleBobHatesMe] = useState([]);
+  const [uploadData, setUploadData] = useState([]);
   const imageInput = useRef();
   //const imageVeiw = new FileReader();
   const handleChange = (stateHandler) => (event) =>
@@ -39,13 +40,13 @@ export default function CreateNewTierList() {
         <input
           ref={imageInput}
           type="file"
-          onChange={handleChange(setImages)}
+          onChange={handleChange(uncleBobHatesMe)} //I am sorry
           accept="image/png, image/jpeg"
           multiple
         />
         <br />
         {imageInput.current ? (
-          <ImagePreveiw files={[...imageInput.current.files]} />
+          <ImagePreveiw files={[...imageInput.current.files]} setUploadData={setUploadData} />
         ) : null}
         <div>
           {labels.map((item, index) => (

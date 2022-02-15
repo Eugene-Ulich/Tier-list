@@ -3,6 +3,7 @@ import OuterContainer from "./OuterContainer";
 import TextField from "../ui/TextField";
 import { TierListContext } from "../controller/TierListProvider";
 import HandleDragEnd from "../controller/HandleDragEnd";
+import useDBUpdate from "../controller/useDBUpdate";
 
 import { useContext } from "react";
 import { MdDownloading } from "react-icons/md";
@@ -17,20 +18,9 @@ export default function TierList() {
     description,
     changeDescription,
     labels,
-    changeLabels,
     loading,
-    fetchURI,
   } = useContext(TierListContext);
-  //----------------------------------------------------// save changes to DB should be moved to component
-  function handleSaveChanges() {
-    fetch(fetchURI, {
-      method: "PUT",
-      body: JSON.stringify({ list, name, description, labels }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((_) => alert("Saved"))
-      .catch(console.error);
-  }
+
   //----------------------------------------------------// render section
 
   if (loading)
@@ -46,9 +36,7 @@ export default function TierList() {
         <TextField text={description} onEdit={changeDescription} />
         <section className="list-container">
           <DragDropContext
-            onDragEnd={(result) =>
-              HandleDragEnd(result, list, changeList)
-            }
+            onDragEnd={(result) => HandleDragEnd(result, list, changeList)}
           >
             {labels.map((value, index) => (
               <ListRows key={index} labelValue={value} labelIndex={index} />
@@ -56,7 +44,7 @@ export default function TierList() {
             <OuterContainer />
           </DragDropContext>
         </section>
-        <button onClick={handleSaveChanges}>Save</button>
+        <button onClick={useDBUpdate}>Save</button>
       </div>
     );
   }

@@ -1,27 +1,49 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { defaultLabel } from "../controller/TierListProvider";
 import ImagePreveiw from "./ImagePreveiw";
 import RowLabel from "./RowLabel";
+import { storage } from "../controller/InitializeFirebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 export default function CreateNewTierList() {
-  const [name, setName] = useState();
-  const [description, setDescription] = useState();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [labels, setLabels] = useState(defaultLabel);
-  const [iAmStupid, uncleBobHatesMe] = useState([]);
-  const [uploadData, setUploadData] = useState([]);
-  const imageInput = useRef();
+  const [files, setFiles] = useState(null);
+  const [uploadData, setUploadData] = useState(null);
   //const imageVeiw = new FileReader();
   const handleChange = (stateHandler) => (event) =>
-    stateHandler(event.target.value);
-  function handleNewTierlist(event) {
+    event.target.files
+      ? stateHandler(event.target.files)
+      : stateHandler(event.target.value);
+  function handleCreation(event) {
     event.preventDefault();
+    const filteredFiles = [...files].filter(
+      (item) => item.type === "image/png" || item.type === "image/jpeg"
+    );
+    const uploadFolder = ref(
+      storage,
+      `Tier-list/${name.replace(/ /, "-")}/${filteredFiles[0].name}`
+    );
+
+    const uploadTask = uploadBytesResumable(uploadFolder, filteredFiles[0]);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {},
+      (error) => {
+        console.error(error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(console.log);
+      }
+    );
   }
 
   return (
     <div>
       <h1>Custom Tier List</h1>
       <p>Create your own tier list template</p>
-      <form onSubmit={handleNewTierlist}>
+      <form onSubmit={handleCreation}>
         <input
           value={name}
           onChange={handleChange(setName)}
@@ -38,19 +60,24 @@ export default function CreateNewTierList() {
         />
         <br />
         <input
-          ref={imageInput}
           type="file"
-          onChange={handleChange(uncleBobHatesMe)} //I am sorry
+          onChange={handleChange(setFiles)}
           accept="image/png, image/jpeg"
           multiple
+          required
         />
         <br />
-        {imageInput.current ? (
-          <ImagePreveiw files={[...imageInput.current.files]} setUploadData={setUploadData} />
+        {files ? (
+          <ImagePreveiw files={[...files]} setUploadData={setUploadData} />
         ) : null}
         <div>
           {labels.map((item, index) => (
-            <RowLabel name={item} index={index} key={index} />
+            <RowLabel
+              name={item}
+              index={index}
+              key={index}
+              handleEdit={[labels, setLabels]}
+            />
           ))}
         </div>
         <button type="submit">Save</button>

@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import "firebase/database";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,7 +12,7 @@ const firebaseConfig = {
   databaseURL:
     "https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "tier-list-70ad0",
-  storageBucket: "tier-list-70ad0.appspot.com",
+  storageBucket: "gs://tier-list-70ad0.appspot.com",
   messagingSenderId: "292688470201",
   appId: "1:292688470201:web:e270d62a1865c3ee75fb68",
 };
@@ -19,6 +20,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export function fetchDatabase() {
-  return getDatabase(app);
-}
+const storage = getStorage(app);
+
+export { storage };

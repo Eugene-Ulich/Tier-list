@@ -7,7 +7,7 @@ export default function ImagePreveiw({ files, setUploadData }) {
   } else if (imageFiles.length > 30) {
     return <p>Maximum number of images is 30. Please pick less images</p>;
   } else {
-    setUploadData(imageFiles);
+    //setUploadData(imageFiles);
     return (
       <div>
         {imageFiles.map((item, index) => (

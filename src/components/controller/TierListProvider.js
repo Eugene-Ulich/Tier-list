@@ -7,8 +7,8 @@ export const defaultLabel = ["S", "A", "B", "C", "F"]; //Why are we still here? 
 
 export default function TierListProvider({ children }) {
   const [list, changeList] = useState([]);
-  const [name, changeName] = useState('');
-  const [description, changeDescription] = useState('');
+  const [name, changeName] = useState("");
+  const [description, changeDescription] = useState("");
   const [labels, changeLabels] = useState(defaultLabel);
   const [loading, setLoading] = useState(true);
   const [fetchURI] = useState(
@@ -17,18 +17,21 @@ export default function TierListProvider({ children }) {
     }.json`
   );
 
-  useEffect((_) => {
-    fetch(fetchURI)
-      .then((response) => response.json())
-      .then((result) => {
-        changeList(result.list);
-        changeName(result.name);
-        changeDescription(result.description);
-        changeLabels(result.labels);
-        setLoading(false);
-      })
-      .catch(console.error);
-  }, []);
+  useEffect(
+    (_) => {
+      fetch(fetchURI)
+        .then((response) => response.json())
+        .then((result) => {
+          changeList(result.list);
+          changeName(result.name);
+          changeDescription(result.description);
+          changeLabels(result.labels);
+          setLoading(false);
+        })
+        .catch(console.error);
+    },
+    [fetchURI]
+  );
 
   return (
     <TierListContext.Provider

@@ -1,9 +1,7 @@
 import classes from "./tier-list.module.css";
-import { useContext } from "react";
-import { TierListContext } from "../controller/TierListProvider";
 
-function RowLabel({ name, index }) {
-  const { labels, changeLabels } = useContext(TierListContext);
+function RowLabel({ name, index, handleEdit }) {
+  const [labels, changeLabels] = handleEdit;
 
   return (
     <span className={classes["row-label"]} id={classes["label-" + index]}>

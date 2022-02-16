@@ -10,33 +10,61 @@ export default function CreateNewTierList() {
   const [description, setDescription] = useState("");
   const [labels, setLabels] = useState(defaultLabel);
   const [files, setFiles] = useState(null);
-  const [uploadData, setUploadData] = useState(null);
+  const [urls, setUrls] = useState([]);
   //const imageVeiw = new FileReader();
+
   const handleChange = (stateHandler) => (event) =>
     event.target.files
       ? stateHandler(event.target.files)
       : stateHandler(event.target.value);
-  function handleCreation(event) {
+
+  function uploadImages(images = [], folderName = "New Folder", setUrls) {
+    const sanitizeStr = (str) =>
+      str
+        .toLowerCase()
+        .replace(/\s/g, "-")
+        .replace(/^a-zа-я0-9_-/g, "");
+    const [urlArray, promises] = [[], []];
+
+    const uploadFolder = ref(storage, `Tier-list/${sanitizeStr(folderName)}`);
+
+    images.forEach((image) => {
+      const uploadTask = uploadBytesResumable(
+        ref(uploadFolder, sanitizeStr(image.name)),
+        image
+      );
+      promises.push(uploadTask);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.error(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((url) => urlArray.push(url))
+            .catch(console.error);
+        }
+      );
+    });
+
+    Promise.all(promises).finally(setUrls(urlArray)).catch(console.error);
+  }
+
+  async function handleCreation(event) {
     event.preventDefault();
     const filteredFiles = [...files].filter(
       (item) => item.type === "image/png" || item.type === "image/jpeg"
     );
-    const uploadFolder = ref(
-      storage,
-      `Tier-list/${name.replace(/ /, "-")}/${filteredFiles[0].name}`
-    );
-
-    const uploadTask = uploadBytesResumable(uploadFolder, filteredFiles[0]);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.error(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then(console.log);
-      }
-    );
+    //TODO: refactoring
+    if (filteredFiles.length < 3) {
+      return <p>You must upload at least 3 images (.jpg/.png)</p>;
+    } else if (filteredFiles.length > 30) {
+      return <p>Maximum number of images is 30. Please pick less images</p>;
+    }
+    uploadImages(filteredFiles, name, setUrls);
+    console.log(urls);
   }
 
   return (
@@ -67,9 +95,7 @@ export default function CreateNewTierList() {
           required
         />
         <br />
-        {files ? (
-          <ImagePreveiw files={[...files]} setUploadData={setUploadData} />
-        ) : null}
+        {files ? <ImagePreveiw files={[...files]} /> : null}
         <div>
           {labels.map((item, index) => (
             <RowLabel

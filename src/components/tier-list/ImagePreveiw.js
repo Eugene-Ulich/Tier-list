@@ -1,4 +1,4 @@
-export default function ImagePreveiw({ files, setUploadData }) {
+export default function ImagePreveiw({ files }) {
   const imageFiles = files.filter(
     (item) => item.type === "image/png" || item.type === "image/jpeg"
   );

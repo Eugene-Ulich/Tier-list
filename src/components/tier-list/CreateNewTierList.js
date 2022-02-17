@@ -2,8 +2,8 @@ import { useState } from "react";
 import { defaultLabel } from "../controller/TierListProvider";
 import ImagePreveiw from "./ImagePreveiw";
 import RowLabel from "./RowLabel";
-import { storage } from "../controller/InitializeFirebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import uploadImages from "../firebase/uploadImages";
+import databaseUpdate from "../firebase/databaseUpdate";
 
 export default function CreateNewTierList() {
   const [name, setName] = useState("");
@@ -11,6 +11,7 @@ export default function CreateNewTierList() {
   const [labels, setLabels] = useState(defaultLabel);
   const [files, setFiles] = useState(null);
   const [urls, setUrls] = useState([]);
+  //const [imgNames, setImgNames] = useState([]);
   //const imageVeiw = new FileReader();
 
   const handleChange = (stateHandler) => (event) =>
@@ -18,53 +19,38 @@ export default function CreateNewTierList() {
       ? stateHandler(event.target.files)
       : stateHandler(event.target.value);
 
-  function uploadImages(images = [], folderName = "New Folder", setUrls) {
-    const sanitizeStr = (str) =>
-      str
-        .toLowerCase()
-        .replace(/\s/g, "-")
-        .replace(/^a-zа-я0-9_-/g, "");
-    const [urlArray, promises] = [[], []];
-
-    const uploadFolder = ref(storage, `Tier-list/${sanitizeStr(folderName)}`);
-
-    images.forEach((image) => {
-      const uploadTask = uploadBytesResumable(
-        ref(uploadFolder, sanitizeStr(image.name)),
-        image
-      );
-      promises.push(uploadTask);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.error(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref)
-            .then((url) => urlArray.push(url))
-            .catch(console.error);
-        }
-      );
-    });
-
-    Promise.all(promises).finally(setUrls(urlArray)).catch(console.error);
-  }
-
   async function handleCreation(event) {
     event.preventDefault();
     const filteredFiles = [...files].filter(
       (item) => item.type === "image/png" || item.type === "image/jpeg"
     );
-    //TODO: refactoring
+    //TODO: refactor
     if (filteredFiles.length < 3) {
       return <p>You must upload at least 3 images (.jpg/.png)</p>;
     } else if (filteredFiles.length > 30) {
       return <p>Maximum number of images is 30. Please pick less images</p>;
-    }
-    uploadImages(filteredFiles, name, setUrls);
+    } //----------------------
+    await uploadImages(filteredFiles, name, setUrls);
+    const tierListObj = {
+      name: name,
+      description: description,
+      labels: labels,
+      list: urls.map((item, index) => {
+        return {
+          img: item,
+          name: filteredFiles[index].name,
+          label: "unordered",
+          "row order": index,
+        };
+      }),
+    };
+    databaseUpdate(
+      tierListObj,
+      `https://tier-list-70ad0-default-rtdb.europe-west1.firebasedatabase.app/tier-lists/${name}.json`,
+      "POST"
+    );
     console.log(urls);
+    console.log(tierListObj);
   }
 
   return (

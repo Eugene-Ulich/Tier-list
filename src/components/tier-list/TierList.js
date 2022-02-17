@@ -3,7 +3,7 @@ import OuterContainer from "./OuterContainer";
 import TextField from "../ui/TextField";
 import { TierListContext } from "../controller/TierListProvider";
 import HandleDragEnd from "../controller/HandleDragEnd";
-import useDBUpdate from "../controller/useDBUpdate";
+import databaseUpdate from "../firebase/databaseUpdate";
 
 import { useContext } from "react";
 import { MdDownloading } from "react-icons/md";
@@ -19,6 +19,7 @@ export default function TierList() {
     changeDescription,
     labels,
     loading,
+    fetchURI,
   } = useContext(TierListContext);
 
   //----------------------------------------------------// render section
@@ -44,7 +45,13 @@ export default function TierList() {
             <OuterContainer />
           </DragDropContext>
         </section>
-        <button onClick={useDBUpdate}>Save</button>
+        <button
+          onClick={() =>
+            databaseUpdate({ name, description, list, labels }, fetchURI)
+          }
+        >
+          Save
+        </button>
       </div>
     );
   }
